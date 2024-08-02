@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import "./questions.css";
 
 const questionsByLevel = [
     // Niveau 1
@@ -398,9 +399,11 @@ const Questions = () => {
     return (
         <Stack justifyContent="center" alignItems="center" sx={{ height: "100vh", padding: 2 }}>
             <Box sx={{ position: 'absolute', top: 16, left: 16 }}>
-                <Chip label={`Niveau: ${currentLevel + 1}`} />            </Box>
-            <Card sx={{ maxWidth: 800, width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
-                <CardContent>
+                <Chip label={`Niveau: ${currentLevel + 1}`} />
+            </Box>
+
+            <div className="questionBox">
+                <div className="questionBoxWrapper">
                     <Typography align="center" variant="h5" component="h2" gutterBottom>
                         {questionsByLevel[currentLevel][currentQuestionIndex].question}
                     </Typography>
@@ -417,25 +420,26 @@ const Questions = () => {
                             </Button>
                         ))}
                     </Stack>
-                </CardContent>
-                <CardActions sx={{ justifyContent: 'center' }}>
+                    <Box sx={{textAlign:"center", mt:2}}>
                     <Button variant="contained" endIcon={<CheckIcon />} color="success" onClick={handleCheckAnswer}>
                         Valider la réponse
                     </Button>
-                </CardActions>
-                {isCorrect !== null && (
-                    <CardContent>
-                        {isCorrect ?
-                            <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-                                Bonne réponse !
-                            </Alert> :
-                            <Alert icon={<CloseIcon fontSize="inherit" />} severity="error">
-                                Mauvaise réponse !
-                            </Alert>
-                        }
-                    </CardContent>
-                )}
-            </Card>
+                    </Box>
+
+                </div>
+            </div>
+            {isCorrect !== null && (
+                <Box mt={2}>
+                    {isCorrect ?
+                        <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+                            Bonne réponse !
+                        </Alert> :
+                        <Alert icon={<CloseIcon fontSize="inherit" />} severity="error">
+                            Mauvaise réponse !
+                        </Alert>
+                    }
+                </Box>
+            )}
             <Dialog open={showLevelUpModal} onClose={handleCloseModal}>
                 <DialogTitle>Félicitations!</DialogTitle>
                 <DialogContent>

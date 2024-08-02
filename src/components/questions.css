@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("../image/bg.jpg");
+    background-size: cover;
+    color: white;
+
+}
+
+.questionBox {
+    width: 800px;
+    position: relative;
+    padding: 60px 40px;
+    border-radius: 40px;
+    box-shadow: 0 0 5px 3px rgba(155, 155, 155, 0.4);
+}
+
+.questionBox::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(230, 230, 230, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+    z-index: -1;
+}
+
+.questionBoxWrapper{
+    z-index: 10;
+}
